@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
   path('', views.welcome, name='welcome'), #landing page 
-  # path('dashboard', views.dashboard, name='dashboard') # user dashboard
+  path('dashboard/<username>/', views.dashboard, name='dashboard') # user dashboard
 ]

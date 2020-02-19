@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 class User_profile(models.Model):
   GOALS = (
-    ('cut', 'Lose weight'),
-    ('maintain', 'Maintain weight'),
-    ('gain', 'Bulk up')
+    ('Lose weight', 'Lose weight'),
+    ('Maintain weight', 'Maintain weight'),
+    ('Bulk up', 'Bulk up')
   )
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_profiles')
   age = models.IntegerField()
@@ -21,9 +21,9 @@ class User_profile(models.Model):
 
 class Meal(models.Model):
   MEAL_NAMES = (
-    ('breakfast', 'Breakfast'),
-    ('lunch', 'Lunch'),
-    ('dinner', 'Dinner')
+    ('Breakfast', 'Breakfast'),
+    ('Lunch', 'Lunch'),
+    ('Dinner', 'Dinner')
   )
   meal_name = models.CharField(max_length=10, choices=MEAL_NAMES)
   total_calories = models.IntegerField()
@@ -42,7 +42,7 @@ class Food(models.Model):
   carbs = models.IntegerField()
   fats = models.IntegerField()
   proteins = models.IntegerField()
-  meals = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='foods')
+  meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='foods')
 
   def __str__(self):
     return self.name
