@@ -1,0 +1,21 @@
+<h1>{{ username }}'s dashboard</h1>
+  <p>Age: {{ user_profile.age }}</p>
+  <p>Height: {{ user_profile.height }}"</p>
+  <p>Weight: {{ user_profile.weight }} lb</p>
+  <p>Target Weight: {{ user_profile.target_weight }} lb</p>
+  <p>Goal: {{ user_profile.goal }}</p>
+<hr/>
+{% for meal in meals %}
+  <p>Meal: {{ meal.meal_name }}</p>
+  <p>Calories: {{ meal.total_calories }}</p>
+  <p>Carbs: {{ meal.total_carbs }}g</p>
+  <p>Fats: {{ meal.total_fats }}g</p>
+  <p>Proteins: {{ meal.total_proteins }}g</p>
+  Foods:
+  <ul>
+    {% for food in meal.foods.all %}
+    <li>{{ food.name }}</li>
+    {% endfor %}
+  </ul>
+<hr/>
+{% endfor %}
