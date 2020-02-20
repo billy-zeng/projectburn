@@ -55,7 +55,7 @@ ROOT_URLCONF = 'burn_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['burn/core'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
