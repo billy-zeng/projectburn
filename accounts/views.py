@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-# from .forms import UserForm, LoginForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 from burn.models import User_profile
@@ -35,7 +34,6 @@ def signup(request):
             first_name=first_name, 
             last_name=last_name)
           user.save()
-          # return redirect('create_profile', username=user.username)
           return redirect('login')
     else:
       context = {'error':'Passwords do not match'}
@@ -43,9 +41,6 @@ def signup(request):
   else:
     # if not post send form 
     return render(request, 'signup1.html')
-
-
-
 
 #login post
 def login(request):
