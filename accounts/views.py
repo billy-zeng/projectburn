@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 # from .forms import UserForm, LoginForm
 from django.contrib import auth
 from django.contrib.auth.models import User
-
-
+from burn.models import User_profile
+from django.core.exceptions import ObjectDoesNotExist
 
 #signup
 def signup(request):
@@ -35,7 +35,8 @@ def signup(request):
             first_name=first_name, 
             last_name=last_name)
           user.save()
-          return redirect('artist_list')
+          # return redirect('create_profile', username=user.username)
+          return redirect('login')
     else:
       context = {'error':'Passwords do not match'}
       return render(request, 'signup1.html', context)
@@ -57,7 +58,14 @@ def login(request):
       # login
       auth.login(request, user)
       #redirect
-      return redirect('artist_list')
+      try:
+        has_profile = User_profile.objects.get(user=user)
+      except ObjectDoesNotExist:
+        has_profile = None
+      if has_profile == None:
+        return redirect('create_profile')
+      else:
+        return redirect('dashboard')
     else:
       context = {'error':'Invalid Credentials'}
       return render(request, 'login.html', context)
@@ -67,6 +75,6 @@ def login(request):
 #logout
 def logout(request):
     auth.logout(request)
-    return redirect('artist_list')
+    return redirect('welcome')
 
 # Create your views here.
