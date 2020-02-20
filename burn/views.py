@@ -2,24 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
-from .forms import ProfileForm
-from requests_auth import Basic
-
-# 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
-def home(request):
-    # response = requests.get('https://foodapi.calorieking.com/v1', auth=('user', ''))
-    response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={9b687b99}&app_key={bc5f2cc77eb479801a3ec37121ccc27a}')
-    data = response.json()
-    print(response)
-    return render(request, 'home.html', {
-        'ip': data
-    })
-
+from .forms import ProfileForm, SearchForm
+# from requests_auth import Basic
 
 # 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
 def home(request):
   # response = requests.get('https://foodapi.calorieking.com/v1', auth=('user', ''))
-  response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={9b687b99}&app_key={bc5f2cc77eb479801a3ec37121ccc27a}')
+  response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
   data = response.json()
   print(response)
   return render(request, 'home.html', {
@@ -36,7 +25,18 @@ def dashboard(request):
   return render(request, 'dashboard.html', {'username': user.username, 'meals': meals, 'user_profile': user_profile})
 
 def search(request):
-  return render(request, 'search.html')
+  if request.method == 'POST':
+    form = SearchForm(request.POST)
+    if form.is_valid():
+      query = form.cleaned_data
+      response = requests.get(f'https://api.edamam.com/api/food-database/parser?ingr={query}&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
+      data = response.json()
+      print(data)
+      context = {'form': form, 'ip': data}
+      return render(request, 'search.html', context)
+  else:
+    form = SearchForm()
+  return render(request, 'search.html', {'form': form})
 
 def create_profile(request):
   user = request.user
@@ -72,13 +72,3 @@ def edit_profile(request):
     form = ProfileForm(instance=user_profile)
   context = {'form': form, 'header': "Edit your profile"}
   return render(request, 'profile_form.html', context)
-
-
-# def search(request):
-#   # response = requests.get('https://foodapi.calorieking.com/v1', auth=('user', ''))
-#   response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
-#   data = response.json()
-#   print(response)
-#   return render(request, 'search.html', {
-#       'ip': data
-#   })
