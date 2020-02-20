@@ -3,9 +3,18 @@ from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
 from .forms import ProfileForm
-from requests_auth import Basic
+# from requests_auth import Basic
 
-# Create your views here.
+# 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
+def home(request):
+    # response = requests.get('https://foodapi.calorieking.com/v1', auth=('user', ''))
+    response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={9b687b99}&app_key={bc5f2cc77eb479801a3ec37121ccc27a}')
+    data = response.json()
+    print(response)
+    return render(request, 'home.html', {
+        'ip': data
+    })
+
 
 # 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
 def home(request):
