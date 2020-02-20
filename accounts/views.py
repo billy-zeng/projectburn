@@ -68,5 +68,3 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return redirect('artist_list')
-
-# Create your views here.
