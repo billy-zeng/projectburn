@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
 from .forms import ProfileForm
-from requests_auth import Basic
+# from requests_auth import Basic
 
 # 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
 def home(request):
