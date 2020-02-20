@@ -1,14 +1,9 @@
-{% block content %}
-  <section class="form-section">
-    <form action="{% url 'search' %}" method="GET" class="SearchForm">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <p>
-          <label for="SearchFoods">Find foods</label>
-          <input type="text" placeholder="Search.." name="query">
-        </p>
-        <button type="submit">search</button>
-    </form>
-  </section>
-  <p>Your Response from Calorie King API is <strong>{{ ip }}</strong></p>
-{% endblock %}
+<h1>Search form goes here</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Search"/>
+</form>
+
+<p>{{ ip }}</p>
