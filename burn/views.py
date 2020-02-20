@@ -4,6 +4,8 @@ from .models import Meal, Food, User_profile
 import requests
 from .forms import ProfileForm
 from requests_auth import Basic
+#urllib for api search encoding
+import urllib.parse
 
 # Create your views here.
 
@@ -73,3 +75,16 @@ def edit_profile(request):
 #   return render(request, 'search.html', {
 #       'ip': data
 #   })
+
+
+# search function
+def handle_search():
+    query = input(SearchForm)
+    urllib.parse.quote(query)
+# search response
+response = requests.get('https://api.edamam.com/api/food-database/parser?ingr={query}&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
+  data = response.json()
+  print(response)
+  return render(request, 'search.html', {
+      'ip': data
+  })
