@@ -31,12 +31,21 @@ def search(request):
       query = form.cleaned_data
       response = requests.get(f'https://api.edamam.com/api/food-database/parser?ingr={query}&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
       data = response.json()
-      print(data)
+      
+      food_data = []
+      for item in data['hints']:
+        food_obj = {
+          item['food']['label'],
+          
+        }
+      print(food_data[food_obj])
+
       context = {'form': form, 'ip': data}
       return render(request, 'search.html', context)
   else:
     form = SearchForm()
   return render(request, 'search.html', {'form': form})
+
 
 def create_profile(request):
   user = request.user
