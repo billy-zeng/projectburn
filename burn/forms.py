@@ -13,4 +13,4 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
 
 class SearchForm(forms.Form):
-    search = forms.CharField(label='Search Foods')
+    search = forms.CharField(label='SearchFoods')
