@@ -1,3 +1,9 @@
 <h1>Search form goes here</h1>
 
-{{ ip }}
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Search"/>
+</form>
+
+<p>{{ ip }}</p>

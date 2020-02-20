@@ -11,3 +11,6 @@ class ProfileForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label='Username')
     password = forms.CharField(widget=forms.PasswordInput())
+
+class SearchForm(forms.Form):
+    search = forms.CharField(label='Search Foods')
