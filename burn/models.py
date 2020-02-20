@@ -8,8 +8,13 @@ class User_profile(models.Model):
     ('Maintain weight', 'Maintain weight'),
     ('Bulk up', 'Bulk up')
   )
+  GENDER = (
+    ('Male', 'Male'),
+    ('Female', 'Female')
+  )
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_profiles')
   age = models.IntegerField()
+  gender = models.CharField(max_length=6, choices=GENDER)
   height = models.IntegerField()
   weight = models.IntegerField()
   bmr = models.IntegerField()
@@ -26,10 +31,10 @@ class Meal(models.Model):
     ('Dinner', 'Dinner')
   )
   meal_name = models.CharField(max_length=10, choices=MEAL_NAMES)
-  total_calories = models.IntegerField()
-  total_carbs = models.IntegerField()
-  total_fats = models.IntegerField()
-  total_proteins = models.IntegerField()
+  total_calories = models.FloatField()
+  total_carbs = models.FloatField()
+  total_fats = models.FloatField()
+  total_proteins = models.FloatField()
   timestamp = models.DateTimeField(auto_now_add=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meals')
 
@@ -38,10 +43,10 @@ class Meal(models.Model):
 
 class Food(models.Model):
   name = models.CharField(max_length=200)
-  calories = models.IntegerField()
-  carbs = models.IntegerField()
-  fats = models.IntegerField()
-  proteins = models.IntegerField()
+  calories = models.FloatField()
+  carbs = models.FloatField()
+  fats = models.FloatField()
+  proteins = models.FloatField()
   meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='foods')
 
   def __str__(self):
