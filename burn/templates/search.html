@@ -1,5 +1,12 @@
 <h1>Search form goes here</h1>
 
+<style>
+body {
+  background: deepskyblue;
+}
+</style>
+
+
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
@@ -8,14 +15,30 @@
 
 <!-- <p>{{ ip }}</p> -->
 
-{% for food in food_data %}
+<!-- edamam -->
+<!-- {% for food in food_data %}
   <p>Label: {{ food.label }}</p>
   <p>Calories: {{ food.calories }}</p>
   <p>Carbs: {{ food.carbs }}g</p>
   <p>Fats: {{ food.fat }}g</p>
   <p>Proteins: {{ food.protein }}g</p>
+  <img src="{{ food.img_url }}" alt="{{ food.food_label }}">
+  <hr/>
+{% endfor %} -->
+
+<!-- nutrionix -->
+{% for food in food_data %}
+  <p>Name: {{ food.food_name }}</p>
+  <p>Serving: {{ food.serving }}g</p>
+  <p>Calories: {{ food.calories }}</p>
+  <p>Carbs: {{ food.carbs }}g</p>
+  <p>Fats: {{ food.fat }}g</p>
+  <p>Proteins: {{ food.protein }}g</p>
+  <img src="{{ food.img_url }}" alt="{{ food.food_name }}">
   <hr/>
 {% endfor %}
+
+<p>{{ error }}</p>
 
 <!-- {% for food in food_data %}
 <div class="col-sm">
