@@ -18,6 +18,7 @@ class User_profile(models.Model):
   height = models.IntegerField()
   weight = models.IntegerField()
   bmr = models.IntegerField()
+  target_bmr = models.IntegerField()
   target_weight = models.IntegerField()
   goal = models.CharField(max_length=20, choices=GOALS)
 
@@ -36,7 +37,6 @@ class Meal(models.Model):
   total_carbs = models.FloatField(default=0)
   total_fats = models.FloatField(default=0)
   total_proteins = models.FloatField(default=0)
-  # timestamp = models.DateTimeField(auto_now_add=True)
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='meals')
 
   def __str__(self):

@@ -5,16 +5,6 @@ import requests
 from .forms import ProfileForm, SearchForm
 from django.http import HttpResponse
 
-# 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
-def home(request):
-  # response = requests.get('https://foodapi.calorieking.com/v1', auth=('user', ''))
-  response = requests.get('https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
-  data = response.json()
-  print(response)
-  return render(request, 'home.html', {
-    'ip': data
-  })
-
 def welcome(request):
   return render(request, 'welcome.html')
 
@@ -41,7 +31,6 @@ def search(request):
         json = {"query": query}
       )
       data = response.json()
-      # print(data)
       food_data = []
       if 'foods' in data:
         for item in data['foods']:
@@ -57,49 +46,6 @@ def search(request):
           food_data.append(food_obj)
       else:
         food_data = None
-      print(food_data)
-
-
-      # edamam api
-      # response = requests.get(f'https://api.edamam.com/api/food-database/parser?ingr={query}&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
-      # data = response.json()
-
-      # food_data = []
-      # for item in data['hints']:
-      #   food_obj = {
-      #     'label': '',
-      #     'calories': '',
-      #     'protein': '',
-      #     'fat': '',
-      #     'carbs': '',
-      #     'img_url': ''
-      #   }
-      #   if 'label' in item['food']:
-      #     food_obj['label'] = item['food']['label']
-      #   if 'ENERC_KCAL' in item['food']['nutrients']:
-      #     food_obj['calories'] = item['food']['nutrients']['ENERC_KCAL']
-      #   if 'PROCNT' in item['food']['nutrients']:
-      #     food_obj['protein'] = item['food']['nutrients']['PROCNT']
-      #   if 'FAT' in item['food']['nutrients']:
-      #     food_obj['fat'] = item['food']['nutrients']['FAT']
-      #   if 'CHOCDF' in item['food']['nutrients']:
-      #     food_obj['carbs'] = item['food']['nutrients']['CHOCDF']
-
-      #   nix_response = requests.post(
-      #     "https://trackapi.nutritionix.com/v2/natural/nutrients",
-      #     headers = {
-      #       'Content-Type': 'application/json',
-      #       "x-app-id": "93bf5046",
-      #       "x-app-key": "5f48f0fc898a6ab5caaeac3bdfd58e79"
-      #     },
-      #     json = {"query": food_obj['label']}
-      #   ).json()
-
-      #   if 'foods' in nix_response:
-      #     food_obj['img_url'] = nix_response['foods'][0]['photo']['thumb']
-
-      #   food_data.append(food_obj)
-      # print(food_data)
 
       if food_data == None:
         context = {'form': form, 'ip': data, 'error': "No foods found, please try again"}

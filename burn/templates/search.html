@@ -6,25 +6,11 @@ body {
 }
 </style>
 
-
 <form method="POST">
   {% csrf_token %}
   {{ form.as_p }}
   <input type="submit" value="Search"/>
 </form>
-
-<!-- <p>{{ ip }}</p> -->
-
-<!-- edamam -->
-<!-- {% for food in food_data %}
-  <p>Label: {{ food.label }}</p>
-  <p>Calories: {{ food.calories }}</p>
-  <p>Carbs: {{ food.carbs }}g</p>
-  <p>Fats: {{ food.fat }}g</p>
-  <p>Proteins: {{ food.protein }}g</p>
-  <img src="{{ food.img_url }}" alt="{{ food.food_label }}">
-  <hr/>
-{% endfor %} -->
 
 <!-- nutrionix -->
 {% for food in food_data %}
@@ -40,14 +26,3 @@ body {
 
 <p>{{ error }}</p>
 
-<!-- {% for food in food_data %}
-<div class="col-sm">
-  <div class="card shadow-lg mb-5 bg-white" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)" style="max-width: 18rem">
-    <div class="card-header bg-dark text-light"  >{{ food.label }}</div>
-    <img class="card-img-top" img src="https://i.ibb.co/NCG9XKx/photo-1555939594-58d7cb561ad1.jpg" height="250px" alt="pita" border="0" alt="Card image cap">
-    <div class="card-body text-light">
-      <h5 class="card-title">Calories: {{ food.calories }}</h5>
-      <p class="card-text" style="text-align: center; "><div class="btn-group" role="group" aria-label="Basic example"><a href="#" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
-    </div>
-  </div>
-{% endfor %} -->
