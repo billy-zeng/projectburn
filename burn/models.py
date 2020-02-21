@@ -18,6 +18,7 @@ class User_profile(models.Model):
   height = models.IntegerField()
   weight = models.IntegerField()
   bmr = models.IntegerField()
+  target_bmr = models.IntegerField()
   target_weight = models.IntegerField()
   goal = models.CharField(max_length=20, choices=GOALS)
 
