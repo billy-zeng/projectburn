@@ -50,7 +50,7 @@ def search(request):
         if 'FAT' in item['food']['nutrients']:
           food_obj['fat'] = item['food']['nutrients']['FAT']
         if 'CHOCDF' in item['food']['nutrients']:
-
+          food_obj['carbs'] = item['food']['nutrients']['CHOCDF']
         food_data.append(food_obj)
       print(food_data)
 
