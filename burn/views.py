@@ -54,7 +54,7 @@ def search(request):
         food_data.append(food_obj)
       print(food_data)
 
-      context = {'form': form, 'ip': data}
+      context = {'form': form, 'ip': data, 'food_data': food_data}
       return render(request, 'search.html', context)
   else:
     form = SearchForm()
