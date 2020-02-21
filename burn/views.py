@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
 from .forms import ProfileForm, SearchForm
-# from requests_auth import Basic
+from django.http import HttpResponse
 
 # 'https://api.edamam.com/api/food-database/parser?ingr=red%20apple&app_id={your app_id}&app_key={your app_key}'
 def home(request):
@@ -122,6 +122,14 @@ def create_profile(request):
       user_profile.bmr = round(655.1 + (4.35 * user_profile.weight) + (4.7 * user_profile.height) - (4.7 * user_profile.age))
     user_profile.user = user
     user_profile.save()
+    breakfast = Meal.objects.create(meal_name='Breakfast', user=user)
+    breakfast.save()
+    snacks = Meal.objects.create(meal_name='Snacks', user=user)
+    snacks.save()
+    lunch = Meal.objects.create(meal_name='Lunch', user=user)
+    lunch.save()
+    dinner = Meal.objects.create(meal_name='Dinner', user=user)
+    dinner.save()
     return redirect('dashboard')
   else:
     form = ProfileForm()
@@ -145,3 +153,16 @@ def edit_profile(request):
     form = ProfileForm(instance=user_profile)
   context = {'form': form, 'header': "Edit your profile"}
   return render(request, 'profile_form.html', context)
+
+# reset (for new day)
+def clear_foods(request):
+  user = request.user
+  meals = Meal.objects.filter(user=user)
+  for meal in meals:
+    foods = Food.objects.filter(meal=meal).delete()
+    meal.total_calories = 0
+    meal.total_carbs = 0
+    meal.total_fats = 0
+    meal.total_proteins = 0
+    meal.save()
+  return HttpResponse('reset!')
