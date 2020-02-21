@@ -165,14 +165,14 @@
   <div class="card-header bg-dark text-light"  >{{ food.label }}</div>
   <img class="card-img-top" img src="https://i.ibb.co/FhWXBv5/photo-1563865436874-9aef32095fad.jpg" alt="pita" height="250px" border="0" alt="Card image cap">
   <div class="card-body text-light">
-    <h5 class="card-title">Calories: {{ food.calories }}</h5>
-    <div class="macros">
-    <p>Carbs: {{ food.carbs }}g</p>
-    <p>Fats: {{ food.fat }}g</p>
-    <p>Proteins: {{ food.protein }}g</p>
+    <h5 class="card-title" data-id="{{food.calories}}">Calories: {{ food.calories }}</h5>
+    <div class="macrosDiv">
+    <p data-id="{{food.carbs}}">Carbs: {{ food.carbs }}g</p>
+    <p data-id="{{food.fat}}">Fats: {{ food.fat }}g</p>
+    <p data-id="{{food.protein}}">Protein: {{ food.protein }}g</p>
     <hr/>
     </div>
-      <p class="card-text" style="text-align: center; "><div class="btn-group" role="group" aria-label="Basic example"><a id="lol" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
+      <p class="card-text" style="text-align: center; "><div class="btn-group btn-block" role="group" aria-label="Basic example"><a id="lol" class="lol btn btn-dark">+</a><a class="marcos btn btn-dark">   View Macros</a> </div></p>
 
   </div>
 </div>

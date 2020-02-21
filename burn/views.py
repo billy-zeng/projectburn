@@ -95,3 +95,15 @@ def edit_profile(request):
     form = ProfileForm(instance=user_profile)
   context = {'form': form, 'header': "Edit your profile"}
   return render(request, 'profile_form.html', context)
+
+
+
+def add_food(request):
+  if request.method == 'POST':
+    # food_id = request.POST('food_id', None)
+    form = FoodForm(request.POST)
+    # if post
+      # build out data from form
+    food.meal = request.POST['meal']
+    food.timestamp = request.POST['timestamp']
+  return render(request, 'search.html')

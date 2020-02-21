@@ -95,8 +95,8 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 
   </nav>
   <div class ="container">
-    <form action="{% url 'signup' %}" method="POST" class="artist-form">
-      {% csrf_token %}
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
       <form class="form-inline">
         <div class="form-group mb-2">
             <label for="email">Email</label>
