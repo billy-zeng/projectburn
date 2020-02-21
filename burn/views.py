@@ -60,6 +60,7 @@ def search(request):
     form = SearchForm()
   return render(request, 'search.html', {'form': form})
 
+
 def create_profile(request):
   user = request.user
   form = ProfileForm(request.POST)
