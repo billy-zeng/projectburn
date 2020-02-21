@@ -31,14 +31,28 @@ def search(request):
       query = form.cleaned_data
       response = requests.get(f'https://api.edamam.com/api/food-database/parser?ingr={query}&app_id=9b687b99&app_key=bc5f2cc77eb479801a3ec37121ccc27a')
       data = response.json()
-      
+
       food_data = []
       for item in data['hints']:
         food_obj = {
-          item['food']['label'],
-          
+          'label': '',
+          'calories': '',
+          'protein': '',
+          'fat': '',
+          'carbs': ''
         }
-      print(food_data[food_obj])
+        if 'label' in item['food']:
+          food_obj['label'] = item['food']['label']
+        if 'ENERC_KCAL' in item['food']['nutrients']:
+          food_obj['calories'] = item['food']['nutrients']['ENERC_KCAL']
+        if 'PROCNT' in item['food']['nutrients']:
+          food_obj['protein'] = item['food']['nutrients']['PROCNT']
+        if 'FAT' in item['food']['nutrients']:
+          food_obj['fat'] = item['food']['nutrients']['FAT']
+        if 'CHOCDF' in item['food']['nutrients']:
+          food_obj['carbs'] = item['food']['nutrients']['CHOCDF']
+        food_data.append(food_obj)
+      print(food_data)
 
       context = {'form': form, 'ip': data}
       return render(request, 'search.html', context)
