@@ -16,7 +16,7 @@ class LoginForm(forms.Form):
 
 class SearchForm(forms.Form):
     search = forms.CharField(label='Search Foods')
-
+    
 class FoodForm(forms.ModelForm):
     class Meta:
         model = Food

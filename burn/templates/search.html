@@ -6,7 +6,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
     <title>Burn</title>
-
+  
     <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/cover/"> -->
 
     <!-- Bootstrap core CSS -->
@@ -161,9 +161,9 @@
 <div class="row d-flex justify-content-center mt-2">
 {% for food in food_data %}
 
-<div id="{{ food.label }}"class="card food-card shadow-lg ml-3 mb-5 bg-white" style="width: 18rem; background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)">
-  <div class="card-header bg-dark text-light"  >{{ food.label }}</div>
-  <img class="card-img-top" img src="https://i.ibb.co/FhWXBv5/photo-1563865436874-9aef32095fad.jpg" alt="pita" height="250px" border="0" alt="Card image cap">
+<div id="{{ food.food_name }}"class="card food-card shadow-lg ml-3 mb-5 bg-white" style="width: 18rem; background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)">
+  <div class="card-header bg-dark text-light"  >{{ food.food_name }}</div>
+  <img class="card-img-top" img src="{{ food.img_url }}" alt="{{ food.food_name }}" height="250px" border="0" alt="Card image cap">
   <div class="card-body text-light">
     <h5 class="card-title" data-id="{{food.calories}}">Calories: {{ food.calories }}</h5>
     <div class="macrosDiv">
@@ -186,14 +186,4 @@
 <script src="{% static 'js/app.js' %}"></script>
   </html>
 
-<!-- {% for food in food_data %}
-<div class="col-sm">
-  <div class="card shadow-lg mb-5 bg-white" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)" style="max-width: 18rem">
-    <div class="card-header bg-dark text-light"  >{{ food.label }}</div>
-    <img class="card-img-top" img src="https://i.ibb.co/NCG9XKx/photo-1555939594-58d7cb561ad1.jpg" height="250px" alt="pita" border="0" alt="Card image cap">
-    <div class="card-body text-light">
-      <h5 class="card-title">Calories: {{ food.calories }}</h5>
-      <p class="card-text" style="text-align: center; "><div class="btn-group" role="group" aria-label="Basic example"><a href="#" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
-    </div>
-  </div>
-{% endfor %} -->
+<p>{{ error }}</p>
