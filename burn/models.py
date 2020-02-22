@@ -30,7 +30,8 @@ class Meal(models.Model):
     ('Breakfast', 'Breakfast'),
     ('Snacks', 'Snacks'),
     ('Lunch', 'Lunch'),
-    ('Dinner', 'Dinner')
+    ('Dinner', 'Dinner'),
+    ('Snacks', 'Snacks')
   )
   meal_name = models.CharField(max_length=10, choices=MEAL_NAMES)
   total_calories = models.FloatField(default=0)
@@ -50,7 +51,5 @@ class Food(models.Model):
   proteins = models.FloatField()
   timestamp = models.DateTimeField()
   meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='foods')
-
   def __str__(self):
     return self.name
-

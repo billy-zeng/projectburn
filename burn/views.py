@@ -64,8 +64,10 @@ def create_profile(request):
     user_profile = form.save(commit=False)
     if user_profile.gender == 'Male':
       user_profile.bmr = round(66.47 + (6.24 * user_profile.weight) + (12.7 * user_profile.height) - (6.755 * user_profile.age))
+      user_profile.target_bmr = round(66.47 + (6.24 * user_profile.target_weight) + (12.7 * user_profile.height) - (6.755 * user_profile.age))
     else:
       user_profile.bmr = round(655.1 + (4.35 * user_profile.weight) + (4.7 * user_profile.height) - (4.7 * user_profile.age))
+      user_profile.target_bmr = round(655.1 + (4.35 * user_profile.target_weight) + (4.7 * user_profile.height) - (4.7 * user_profile.age)) 
     user_profile.user = user
     user_profile.save()
     breakfast = Meal.objects.create(meal_name='Breakfast', user=user)
@@ -100,6 +102,15 @@ def edit_profile(request):
   context = {'form': form, 'header': "Edit your profile"}
   return render(request, 'profile_form.html', context)
 
+def add_food(request):
+  if request.method == 'POST':
+    # food_id = request.POST('food_id', None)
+    form = FoodForm(request.POST)
+    # if post
+      # build out data from form
+    food.meal = request.POST['meal']
+    food.timestamp = request.POST['timestamp']
+  return render(request, 'search.html')
 # reset (for new day)
 def clear_foods(request):
   user = request.user

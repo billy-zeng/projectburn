@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+        <title>SignUp</title>
+    </head>
+    <body>
+      <nav class="navbar navbar-dark bg-dark mb-2 p-2 text-dark">
+        <h1><u> BURN </u> </h1>
+      </nav>
+        <h1>Who you is?</h1>
+        <hr/>
+        {% for User in Users %}
+            <p>name: {{ User.name }}</p>
+            <h3>Macros</h1>
+            <p>height: {{ User.height }}</p>
+            <p>weight: {{ User.weight }}</p>
+            <p>age: {{ User.age }}</p>
+            <p>isMale: {{ User.isMale }}</p>
+            <p>bmr: {{ User.bmr }}</p>
+            <h3>Goals</h3>
+            <p>target_weight: {{ User.target_weight }}</p>
+            <p>goal: {{ User.goal }}</p>
+        {% endfor %}
+        <footer>I'm a footer</footer>
+    </body>
+</html>
