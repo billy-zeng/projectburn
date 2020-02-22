@@ -81,6 +81,11 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
 
   }
 
+  h1:hover {
+      transform: translateX(50px);
+      transition: 0.4s ease-out;
+  }
+
   .card {
     height: 400px;
   }
@@ -150,7 +155,7 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
 <container class="container dash-container" style="color: white; ">
 <body>
   <div class="card dash-card bg-dark text-light" style="width: 200px; position: absolute; height:200px; margin-left:100px">
-    <div class="card-header card-head bg-dark text-light">User Dashboard</div>
+    <div class="card-header card-head bg-dark text-light">{{ username }}'s Dashboard</div>
     <div class="card-body dash-card-body" style="font-size:12px; text-align: left">
       <!-- <container style="color: white"> -->
         <!--  -->
@@ -169,7 +174,7 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
   </div>
 
 <div class="container dashy mb-5" style="text-align: center;">
-    <h4 style="position: relative"> Daily Nutrition Targets </h4>
+    <h4 style="position: relative"> Daily Macros Targets </h4>
 	<div class="row d-flex justify-content-center mt-2">
 		<div class="col-sm-3 col-md-2">
       <div class="progress mb-3 shadow mb-5 bg-dark"style= "height: 75px" >
@@ -200,7 +205,7 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
       <img class="card-img-top" img src="https://i.ibb.co/ZVhGmhc/pexels-photo-1624487.jpg" alt="pita" height="250px" border="0" alt="Card image cap">
       <div class="card-body text-light">
         <h5 class="card-title">Calories: 400</h5>
-          <p class="card-text" style="text-align: center; "><div class="btn-group" role="group" aria-label="Basic example"><a href="#" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
+          <p class="card-text" style="text-align: center; "><div class="btn-group " role="group" aria-label="Basic example"><a href="#" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
       </div>
     </div>
     </div>
