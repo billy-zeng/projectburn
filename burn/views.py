@@ -111,6 +111,7 @@ def add_food(request):
     food.meal = request.POST['meal']
     food.timestamp = request.POST['timestamp']
   return render(request, 'search.html')
+  
 # reset (for new day)
 def clear_foods(request):
   user = request.user
