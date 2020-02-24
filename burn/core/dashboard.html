@@ -47,7 +47,7 @@
 
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    style="text-align: center;"
+    /* style="text-align: center;" */
     /* background-color: #FFE53B;
 background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 24%, #6b208a 61%, #45969b 82%); */
 
@@ -86,9 +86,9 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
       transition: 0.4s ease-out;
   }
 
-  .card {
+  /* .card {
     height: 400px;
-  }
+  } */
 
 .card{
   transform: translateY(20px);
@@ -98,14 +98,14 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
 .dash-card {
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
 }
-.dash-card-body {
+/* .dash-card-body {
 
-}
+} */
 
-.card:hover {
+/* .card:hover {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
-}
+} */
 
 .dash-container{
   background: rgba(0, 0, 0, 0.1);
@@ -141,10 +141,13 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
   border-radius: 25px;
 }
 
-.lol {
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
-  background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%);
-  stroke: grey;
+#resetButton {
+  margin: 0 auto;
+}
+
+.button_wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 </style>
@@ -154,47 +157,62 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
 </nav>
 <container class="container dash-container" style="color: white; ">
 <body>
-  <div class="card dash-card bg-dark text-light" style="width: 200px; position: absolute; height:200px; margin-left:100px">
-    <div class="card-header card-head bg-dark text-light">{{ username }}'s Dashboard</div>
-    <div class="card-body dash-card-body" style="font-size:12px; text-align: left">
-      <!-- <container style="color: white"> -->
-        <!--  -->
-        <!-- <h3>{{ username }}'s Dashboard</h3> -->
-        <!-- <p>Age: {{ user_profile.age }}</p> -->
-        <!-- <p>Height: {{ user_profile.height }}"</p> -->
-        <!-- <p>Weight: {{ user_profile.weight }} lb</p>
+  <div class="container meal-container mb-5 p-5" style="text-align: center">
+
+  <div class="card dash-card bg-dark text-light" >
+    <div class="card-header card-head bg-dark text-light"><h3>{{ user.first_name }}'s Dashboard</h3></div>
+    <div class="card-body dash-card-body">
         <p>BMR: {{ user_profile.bmr }}</p>
-        <p>Target Weight: {{ user_profile.target_weight }} lb</p>
-        <p>Goal: {{ user_profile.goal }}</p> -->
-      <!-- <container> -->
-        <p>BMR: {{ user_profile.bmr }}</p>
+        <p>Goal: {{ user_profile.goal }}</p>
         <p>Current Weight: {{ user_profile.weight }} lb</p>
         <p>Target Weight: {{ user_profile.target_weight }} lb</p>
+        <div class='button_wrapper'">
+          <button id="editProfile" type="button" class="btn btn-light btn-md">Edit Profile</button>
+        </div>
     </div>
   </div>
+
+  </div>
+  
+  <!-- <div class="container meal-container mb-5 p-5" style="text-align: center">
+    <div class="card dash-card bg-dark text-light">
+    <div class="card-header card-head bg-dark text-light">{{ username }}'s Dashboard</div>
+    <div class="card-body dash-card-body" style="font-size:12px;">
+      <p>Weight: {{ user_profile.weight }} lb</p>
+      <p>BMR: {{ user_profile.bmr }}</p>
+      <p>Target Weight: {{ user_profile.target_weight }} lb</p>
+      <p>Goal: {{ user_profile.goal }}</p>
+    </div>
+  </div> -->
 
 <div class="container dashy mb-5" style="text-align: center;">
     <h4 style="position: relative"> Daily Macros Targets </h4>
 	<div class="row d-flex justify-content-center mt-2">
 		<div class="col-sm-3 col-md-2">
       <div class="progress mb-3 shadow mb-5 bg-dark"style= "height: 75px" >
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: 75%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Protein</div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: {{ percent_carbs }}%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Carbs</div>
       </div>
 		</div>
     <div class="col-sm-3 col-md-2">
       <div class="progress mb-3 shadow mb-5 bg-dark"style= "height: 75px" >
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: 45%"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Carbs</div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: {{ percent_fats }}%"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Fats</div>
       </div>
 		</div>
 
     <div class="col-sm-3 col-md-2">
       <div class="progress mb-3 shadow mb-5 bg-dark" style= "height: 75px" >
-        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: 100%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Fats</div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: {{ percent_proteins }}" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Proteins</div>
+      </div>
+    </div>
+    
+    <div class="col-sm-3 col-md-2">
+      <div class="progress mb-3 shadow mb-5 bg-dark" style= "height: 75px" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%); width: {{ percent_calories }}%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Calories</div>
       </div>
 		</div>
   </div>
 </div>
-</container>
+<!-- </container> -->
 
 
 <!-- <div class="container meal-container mb-5 p-5" style="text-align: center"> -->
@@ -258,7 +276,10 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
             <img class="card-img-top" img src="{{ food.image }}" alt="pita" height="250px" border="0" alt="Card image cap">
             <div class="card-body text-light">
               <h5 class="card-title">Calories: {{ food.calories|floatformat:2 }}</h5>
-                <p class="card-text" style="text-align: center; "><div class="btn-group " role="group" aria-label="Basic example"><a href="#" class="lol btn btn-dark">+</a><a href="#" class="btn btn-dark">   View Macros</a> </div></p>
+              <p data-id="{{food.carbs}}" class="food-data">Carbs: {{ food.carbs|floatformat:2 }}g</p>
+              <p data-id="{{food.fat}}" class="food-data">Fats: {{ food.fats|floatformat:2 }}g</p>
+              <p data-id="{{food.protein}}" class="food-data">Protein: {{ food.proteins|floatformat:2 }}g</p>
+              <p data-id="{{food.timestamp}}" class="food-data">Time: {{ food.timestamp }}</p>
             </div>
           </div>
         </div>
@@ -268,6 +289,10 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
     <hr/>
   <!-- </div> -->
 {% endfor %}
+<div class='button_wrapper'>
+  <button id="resetButton" type="button" class="btn btn-danger btn-lg">Reset</button>
+</div>
+</container>
 
 </body>
 
@@ -295,7 +320,7 @@ background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 80%); */
   </ul>
 <hr/>
 {% endfor %}
-<a class='reset'>RESET</a>
+<!-- <a class='reset'>RESET</a> -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="{% static 'js/app.js' %}"></script>
 

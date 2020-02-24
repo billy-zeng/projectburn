@@ -1,11 +1,7 @@
-
 console.log("I am working")
 
-// $("body").on("click", ".macros", function() {
-//   console.log("working")
-//   let mac = $(this).parent().find(".macrosDiv")
-//   console.log(mac)
-// })
+console.log($('#editProfile'))
+console.log($('#resetButton'))
 
 $("body").on("click", ".lol", function() {
   let cardID = $(this).parent().parent().parent().attr('id');
@@ -63,14 +59,27 @@ $("body").on("click", ".lol", function() {
 })
 
 // reset
-$('.reset').on('click', function(event){
+$('#resetButton').on('click', function(event){
   console.log('click')
   event.preventDefault();
   $.ajax({
     url: '/clear_foods/',
     method: 'GET',
     success: function(response){
-      console.log(response)
+      window.location = '/dashboard/';
+    }
+  });
+}); 
+
+// edit profile
+$('#editProfile').on('click', function(event){
+  console.log('click')
+  event.preventDefault();
+  $.ajax({
+    url: '/edit_profile/',
+    method: 'GET',
+    success: function(response){
+      window.location = '/edit_profile/';
     }
   });
 }); 
