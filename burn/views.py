@@ -52,6 +52,7 @@ def search(request):
   if request.method == 'POST':
     form = SearchForm(request.POST)
     add_food_form = FoodForm()
+    add_food_form.fields['meal'].queryset = Meal.objects.filter(user=request.user)
 
     meal = request.POST.get('meal')
     timestamp = request.POST.get('timestamp')
