@@ -46,20 +46,20 @@ $("body").on("click", ".lol", function() {
   </form>`)
 
 
-  $('body').on('click', '.logFood', function(event){
-    console.log("this works")
-    console.log(element.attr('data-id'))
-    event.preventDefault();
-    var element = $(this);
-    $.ajax({
-      url: 'search/add_food/',
-      method: 'POST',
-      data: {food_id: element.attr('data-id')},
-      success: function(response){
-        console.log(data)
-      }
-    });
-  });
+  // $('body').on('click', '.logFood', function(event){
+  //   console.log("this works")
+  //   // console.log(element.attr('data-id'))
+  //   event.preventDefault();
+  //   var element = $(this);
+  //   $.ajax({
+  //     url: '/add_food/',
+  //     method: 'POST',
+  //     // data: {food_id: element.attr('data-id')},
+  //     success: function(response){
+  //       console.log('success')
+  //     }
+  //   });
+  // });
 })
 
 // reset
@@ -74,3 +74,33 @@ $('.reset').on('click', function(event){
     }
   });
 }); 
+
+// $('body').on('submit', '#addFoodForm', function(event){
+//   console.log("this works")
+//   event.preventDefault();
+//   const element = $(this);
+//   const food_data_values = element.parent().parent().parent().find('#foodDataValues').val()
+//   const food_name = element.parent().parent().parent().find('#foodName').val()
+//   const food_calories = element.parent().parent().parent().find('#foodCalories').val()
+//   const food_carbs = element.parent().parent().parent().find('#foodCarbs').val()
+//   const food_fats = element.parent().parent().parent().find('#foodFat').val()
+//   const food_proteins = element.parent().parent().parent().find('#foodProtein').val()
+//   // const food_data_values = $('#foodDataValues').val()
+//   const csrf_token = $('input[name="csrfmiddlewaretoken"]').val();
+//   $.ajax({
+//     url: '/search/',
+//     method: 'POST',
+//     data: {
+//       food_data: food_data_values,
+//       food_name: food_name,
+//       food_calories: food_calories,
+//       food_carbs: food_carbs,
+//       food_fats: food_fats,
+//       food_proteins: food_proteins,
+//       'csrfmiddlewaretoken': csrf_token
+//     },
+//     success: function(response){
+//       console.log(response)
+//     }
+//   });
+// });

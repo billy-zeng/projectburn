@@ -49,7 +49,8 @@ class Food(models.Model):
   carbs = models.FloatField()
   fats = models.FloatField()
   proteins = models.FloatField()
-  timestamp = models.DateTimeField()
+  timestamp = models.CharField(max_length=200)
+  image = models.CharField(max_length=10000)
   meal = models.ForeignKey(Meal, on_delete=models.CASCADE, related_name='foods')
   def __str__(self):
     return self.name

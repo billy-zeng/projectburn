@@ -80,14 +80,18 @@
       transition: 0.4s ease-out;
   }
 
-  .card {
+  /* .card {
 
-  }
-
+  } */
+/* 
   .card{
   transform: translateY(20px);
   transition: 0.4s ease-out;
-  }
+  } */
+  /* .logFood {
+  transform: scale(1.2);
+  transition: 0.4s ease-out;
+  }  */
 
   .dash-card {
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
@@ -96,10 +100,10 @@
 
   }
 
-  .card:hover {
-  transform: translateY(-20px);
+  .logFood:hover {
+  transform: scale(1.1);
   transition: 0.4s ease-out;
-  border-radius: 50px;
+  /* border-radius: 50px; */
   }
 
   .dash-container{
@@ -131,14 +135,19 @@
   }
 
 
-  .lol {
+  /* .lol {
   box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.5);
   background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%);
   stroke: grey;
   }
 
+  .errorlist {
+    display: hidden;
+  } */
+
 </style>
 
+<body>
 <nav class="navbar navbar-dark bg-dark mb-2 p-2 text-dark">
 <h1><u> BURN </u> </h1>
 </nav>
@@ -162,17 +171,57 @@
 {% for food in food_data %}
 
 <div id="{{ food.food_name }}"class="card food-card shadow-lg ml-3 mb-5 bg-white" style="width: 18rem; background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)">
-  <div class="card-header bg-dark text-light"  >{{ food.food_name }}</div>
+  <div class="card-header bg-dark text-light food-data"  >{{ food.food_name }}</div>
   <img class="card-img-top" img src="{{ food.img_url }}" alt="{{ food.food_name }}" height="250px" border="0" alt="Card image cap">
   <div class="card-body text-light">
-    <h5 class="card-title" data-id="{{food.calories}}">Calories: {{ food.calories }}</h5>
+    <h5 class="card-title food-data" data-id="{{food.calories}}">Calories: {{ food.calories }}</h5>
     <div class="macrosDiv">
-    <p data-id="{{food.carbs}}">Carbs: {{ food.carbs }}g</p>
-    <p data-id="{{food.fat}}">Fats: {{ food.fat }}g</p>
-    <p data-id="{{food.protein}}">Protein: {{ food.protein }}g</p>
+    <p data-id="{{food.carbs}}" class="food-data">Carbs: {{ food.carbs }}g</p>
+    <p data-id="{{food.fat}}" class="food-data">Fats: {{ food.fat }}g</p>
+    <p data-id="{{food.protein}}" class="food-data">Protein: {{ food.protein }}g</p>
     <hr/>
     </div>
-      <p class="card-text" style="text-align: center; "><div class="btn-group btn-block" role="group" aria-label="Basic example"><a id="lol" class="lol btn btn-dark">+</a><a class="marcos btn btn-dark">   View Macros</a> </div></p>
+      <!-- <p class="card-text" style="text-align: center; "><div class="btn-group btn-block" role="group" aria-label="Basic example"><a id="lol" class="lol btn btn-dark">+</a><a class="marcos btn btn-dark">   View Macros</a> </div></p> -->
+
+    <div class="alert alert-transparent" role="alert">
+      <h4 class="alert-heading">Yummy!</h4>
+      <!-- <form action="{% url 'add_food' %}" method="POST" class="time-form"> -->
+        <div class="form-group">
+        <label for="exampleFormControlSelect1">When Did You Eat This Food?</label>
+        <!-- <select class="form-control" id="exampleFormControlSelect1">
+          <option>Breakfast</option>
+          <option>Lunch</option>
+          <option>Dinner</option>
+          <option>Snack</option>
+        </select>
+          <div class="row mt-2">
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Enter Date">
+            </div>
+            <div class="col">
+              <input type="text" class="form-control" placeholder="Enter Time">
+            </div>
+          </div> -->
+        <div>
+          <form id="addFoodForm" method="POST">
+            {% csrf_token %}
+            {{ add_food_form.as_p }}
+            <input id="foodDataValues" type="hidden" name="food_data" value="{{ food.food_name }},{{food.calories}},{{food.carbs}},{{food.fat}},{{food.protein}}" />
+            <input id="foodName" type="hidden" name="food_name" value="{{ food.food_name }}" />
+            <input id="foodCalories" type="hidden" name="food_calories" value="{{ food.calories }}" />
+            <input id="foodCarbs" type="hidden" name="food_carbs" value="{{ food.carbs }}" />
+            <input id="foodFat" type="hidden" name="food_fats" value="{{ food.fat }}" />
+            <input id="foodProtein" type="hidden" name="food_proteins" value="{{ food.protein }}" />
+            <input id="foodImage" type="hidden" name="food_img" value="{{ food.img_url }}" />
+            <button type="submit" class="logFood btn btn-outline-dark btn-transparent btn-block">Log This Food!</button>
+          </form>
+        </div>
+
+        </div>
+        <hr>
+        <!-- <button type="submit" class="logFood btn btn-outline-dark btn-transparent btn-block">Log This Food!</button> -->
+      <!-- </form> -->
+    </div>
 
   </div>
 </div>
@@ -180,10 +229,13 @@
 
 
 {% endfor %}
+<p>{{ error }}</p>
+
 </div>
 </div>
+</body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="{% static 'js/app.js' %}"></script>
   </html>
 
-<p>{{ error }}</p>
+

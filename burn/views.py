@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
-from .forms import ProfileForm, SearchForm
+from .forms import ProfileForm, SearchForm, FoodForm
 from django.http import HttpResponse
 
 def welcome(request):
@@ -17,6 +17,32 @@ def dashboard(request):
 def search(request):
   if request.method == 'POST':
     form = SearchForm(request.POST)
+    add_food_form = FoodForm()
+
+    meal = request.POST.get('meal')
+    timestamp = request.POST.get('timestamp')
+
+    if meal is not None and timestamp is not None:
+      add_food_form = FoodForm(request.POST)
+
+    # Handle add food (create new database entry)
+    if add_food_form.is_valid():
+      food = add_food_form.save(commit=False)
+      food.name = request.POST.get('food_name')
+      food.calories = request.POST.get('food_calories')
+      food.meal.total_calories += float(food.calories)
+      food.carbs = request.POST.get('food_carbs')
+      food.meal.total_carbs += float(food.carbs)
+      food.fats = request.POST.get('food_fats')
+      food.meal.total_fats += float(food.fats)
+      food.proteins = request.POST.get('food_proteins')
+      food.meal.total_proteins += float(food.proteins)
+      food.image = request.POST.get('food_img')
+      food.save()
+      food.meal.save()
+      return redirect('dashboard')
+
+    # Handle search food
     if form.is_valid():
       query = form.cleaned_data['search']
 
@@ -50,11 +76,16 @@ def search(request):
       if food_data == None:
         context = {'form': form, 'ip': data, 'error': "No foods found, please try again"}
       else:
-        context = {'form': form, 'ip': data, 'food_data': food_data}
+        context = {'form': form, 'ip': data, 'food_data': food_data, 'add_food_form': add_food_form}
       return render(request, 'search.html', context)
   else:
     form = SearchForm()
-  return render(request, 'search.html', {'form': form})
+    add_food_form = FoodForm()
+
+  # if add_food_form.is_valid():
+  #   return render(request, 'dashboard')
+  # else:
+  return render(request, 'search.html', {'form': form, 'add_food_form': add_food_form})
 
 
 def create_profile(request):
@@ -103,14 +134,39 @@ def edit_profile(request):
   return render(request, 'profile_form.html', context)
 
 def add_food(request):
+  user = request.user
+  user_profile = User_profile.objects.get(user=user)
   if request.method == 'POST':
-    # food_id = request.POST('food_id', None)
     form = FoodForm(request.POST)
-    # if post
-      # build out data from form
-    food.meal = request.POST['meal']
-    food.timestamp = request.POST['timestamp']
-  return render(request, 'search.html')
+    if form.is_valid():
+      # food.meal = request.POST['meal']
+      # food.timestamp = request.POST['timestamp']
+
+      # food_data = request.POST.get('food_data')
+      # food_name = request.POST.get('food_name')
+      # food_calories = request.POST.get('food_calories')
+      # food_carbs = request.POST.get('food_carbs')
+      # food_fats = request.POST.get('food_fats')
+      # food_proteins = request.POST.get('food_proteins')
+      # print(food_name)
+      # print(food_calories)
+      # print(food_carbs)
+      # print(food_fats)
+      # print(food_proteins)
+
+      food = form.save(commit=False)
+      food.name = 'test name 2'
+      food.calories = 1
+      food.carbs = 2
+      food.fats = 3
+      food.proteins = 4
+      food.save()
+      return redirect(request, 'dashboard/')
+  else:
+    form = FoodForm()
+  return redirect(request, 'dashboard/')
+
+
   
 # reset (for new day)
 def clear_foods(request):
