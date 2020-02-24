@@ -1,9 +1,9 @@
 # Burn
 
-SEI 7 - Project 2 - Django
+### SEI 7 - Project 2 - Django
 
 
-Welcome to Burn!
+### Welcome to Burn!
 
 #### Description:
 This project is a nutrition app in which users can track their daily intake of calories, fats, carbs, and protein. 
