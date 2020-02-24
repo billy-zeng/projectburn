@@ -1,5 +1,6 @@
-# projectburn
-SEI 7 - Project 2 - Django
+## Burn
+
+#SEI 7 - Project 2 - Django
 
 
 Welcome to Burn!
@@ -18,9 +19,13 @@ Link to Heroku hosted project:
 
 
 Technologies (languages, external libraries, APIs):
+Python
+Django
+PostgreSQL
 Bootstrap
 JQuery
-Nutronix
+Ajax
+Nutronix API
 Favicon
 AwesomeFonts
 
