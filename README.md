@@ -9,6 +9,8 @@
 This project is a nutrition app in which users can track their daily intake of calories, fats, carbs, and protein. 
 Unlike other nutrition apps, Burn tracks your nutritional intake via an external api called Nutronix. All you have to do is input the food you ate and when you ate it, and we handle all the rest!
 
+
+#### Wireframe:
 ![Wireframe](assets/project_django_wireframe.jpg)
 
 #### User stories:
