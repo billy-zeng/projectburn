@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="container col-md-5 mb-4 mt-4">
+        <p class="mb-4">BURN is like a personal assistant, there to help you make better choices when you're sitting in front of the computer all day.</p>
+        <p class="mb-4">We do this by giving you full control of your health goals and letting you know if you've reached your daily targets, set by your personal body type.</p>
+        <p class="text-align-center">So set your goals, log your meals, and feel the BURN today!</p>
+    </div>
+    <div class="container2">
+        <div class="row">
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            <a class="btn btn-info btn-lg" href="{% url 'signup' %}">Sign Up</a>
+            <a class="btn btn-info btn-lg" href="{% url 'login' %}">Login</a>
+            </div>
+            <div class="col-sm">
+            </div>
+            <div class="col-sm">
+            </div>
+        </div>
+    </div>
+{% endblock %}

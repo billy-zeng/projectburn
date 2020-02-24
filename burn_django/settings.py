@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'burn'
+    'burn',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,7 @@ ROOT_URLCONF = 'burn_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        # 'DIRS': ['burn/core'],
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
