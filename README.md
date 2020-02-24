@@ -36,6 +36,6 @@ tracking weekly and monthly goals over time,
 automatic daily reset on goals and foods eaten.
 
 #### Contributors (with links to their GitHub profiles):
-* Billy: https://github.com/billy-zeng,
-* Ryan: https://github.com/ryansherring,
+* Billy: https://github.com/billy-zeng
+* Ryan: https://github.com/ryansherring
 * Sai: https://github.com/saiguy1
