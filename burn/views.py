@@ -44,8 +44,11 @@ def dashboard(request):
   percent_fats = 100*current_fats/target_fats
   percent_proteins = 100*current_proteins/target_proteins
 
-  return render(request, 'dashboard.html', {'username': user.username, 'meals': meals, 'user_profile': user_profile, 
-  'percent_calories': percent_calories, 'percent_carbs': percent_carbs, 'percent_fats': percent_fats, 'percent_proteins': percent_proteins})
+  context = {'username': user.username, 'meals': meals, 'user_profile': user_profile, 
+  'percent_calories': percent_calories, 'percent_carbs': percent_carbs, 'percent_fats': percent_fats, 'percent_proteins': percent_proteins, 
+  'target_calories': target_calories, 'target_carbs': target_carbs, 'target_fats': target_fats, 'target_proteins': target_proteins}
+  
+  return render(request, 'dashboard.html', context)
 
 @login_required
 def search(request):
