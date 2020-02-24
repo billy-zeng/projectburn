@@ -20,11 +20,11 @@ def signup(request):
       # check if username exists in db
       if User.objects.filter(username=username_form).exists():
         context = {'error': 'Username is already taken.'}
-        return render(request, 'signup1.html', context)
+        return render(request, 'signup.html', context)
       else:
         if User.objects.filter(email=email_form).exists():
           context = {'error':'That email already exists.'}
-          return render(request, 'signup1.html', context)
+          return render(request, 'signup.html', context)
         else: 
           # if everything is ok create account
           user = User.objects.create_user(
@@ -37,10 +37,10 @@ def signup(request):
           return redirect('login')
     else:
       context = {'error':'Passwords do not match'}
-      return render(request, 'signup1.html', context)
+      return render(request, 'signup.html', context)
   else:
     # if not post send form 
-    return render(request, 'signup1.html')
+    return render(request, 'signup.html')
 
 #login post
 def login(request):

@@ -3,11 +3,12 @@ from django.contrib.auth.models import User
 from .models import Meal, Food, User_profile
 import requests
 from .forms import ProfileForm, SearchForm, FoodForm
-from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 def welcome(request):
   return render(request, 'welcome.html')
 
+@login_required
 def dashboard(request):
   user = request.user
   user_profile = User_profile.objects.get(user=user)
@@ -46,6 +47,7 @@ def dashboard(request):
   return render(request, 'dashboard.html', {'username': user.username, 'meals': meals, 'user_profile': user_profile, 
   'percent_calories': percent_calories, 'percent_carbs': percent_carbs, 'percent_fats': percent_fats, 'percent_proteins': percent_proteins})
 
+@login_required
 def search(request):
   if request.method == 'POST':
     form = SearchForm(request.POST)
@@ -112,9 +114,9 @@ def search(request):
         food_data = None
 
       if food_data == None:
-        context = {'form': form, 'ip': data, 'error': "No foods found, please try again"}
+        context = {'form': form, 'error': "No foods found, please try again"}
       else:
-        context = {'form': form, 'ip': data, 'food_data': food_data, 'add_food_form': add_food_form}
+        context = {'form': form, 'food_data': food_data, 'add_food_form': add_food_form}
       return render(request, 'search.html', context)
   else:
     form = SearchForm()
@@ -122,7 +124,7 @@ def search(request):
 
   return render(request, 'search.html', {'form': form, 'add_food_form': add_food_form})
 
-
+@login_required
 def create_profile(request):
   user = request.user
   form = ProfileForm(request.POST)
@@ -153,6 +155,7 @@ def create_profile(request):
   context = {'form': form, 'header': "Set up your profile"}
   return render(request, 'profile_form.html', context)
 
+@login_required
 def edit_profile(request):
   user = request.user
   user_profile = User_profile.objects.get(user=user)
@@ -162,8 +165,10 @@ def edit_profile(request):
       user_profile = form.save(commit=False)
       if user_profile.gender == 'Male':
         user_profile.bmr = round(66.47 + (6.24 * user_profile.weight) + (12.7 * user_profile.height) - (6.755 * user_profile.age))
+        user_profile.target_bmr = round(66.47 + (6.24 * user_profile.target_weight) + (12.7 * user_profile.height) - (6.755 * user_profile.age))
       else:
         user_profile.bmr = round(655.1 + (4.35 * user_profile.weight) + (4.7 * user_profile.height) - (4.7 * user_profile.age))
+        user_profile.target_bmr = round(655.1 + (4.35 * user_profile.target_weight) + (4.7 * user_profile.height) - (4.7 * user_profile.age)) 
       user_profile.save()
       return redirect('dashboard')
   else:
@@ -171,41 +176,6 @@ def edit_profile(request):
   context = {'form': form, 'header': "Edit your profile"}
   return render(request, 'profile_form.html', context)
 
-# def add_food(request):
-#   user = request.user
-#   user_profile = User_profile.objects.get(user=user)
-#   if request.method == 'POST':
-#     form = FoodForm(request.POST)
-#     if form.is_valid():
-#       # food.meal = request.POST['meal']
-#       # food.timestamp = request.POST['timestamp']
-
-#       # food_data = request.POST.get('food_data')
-#       # food_name = request.POST.get('food_name')
-#       # food_calories = request.POST.get('food_calories')
-#       # food_carbs = request.POST.get('food_carbs')
-#       # food_fats = request.POST.get('food_fats')
-#       # food_proteins = request.POST.get('food_proteins')
-#       # print(food_name)
-#       # print(food_calories)
-#       # print(food_carbs)
-#       # print(food_fats)
-#       # print(food_proteins)
-
-#       food = form.save(commit=False)
-#       food.name = 'test name 2'
-#       food.calories = 1
-#       food.carbs = 2
-#       food.fats = 3
-#       food.proteins = 4
-#       food.save()
-#       return redirect(request, 'dashboard/')
-#   else:
-#     form = FoodForm()
-#   return redirect(request, 'dashboard/')
-
-
-  
 # reset (for new day)
 def clear_foods(request):
   user = request.user

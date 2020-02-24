@@ -1,23 +1,83 @@
-<h1>{{ username }}'s dashboard</h1>
-  <p>Age: {{ user_profile.age }}</p>
-  <p>Height: {{ user_profile.height }}"</p>
-  <p>Weight: {{ user_profile.weight }} lb</p>
-  <p>BMR: {{ user_profile.bmr }}</p>
-  <p>Target Weight: {{ user_profile.target_weight }} lb</p>
-  <p>Goal: {{ user_profile.goal }}</p>
-<hr/>
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- User Profile Info -->
+<div class="container meal-container mb-5 p-5" style="text-align: center">
+<div class="card dash-card bg-dark text-light" >
+  <div class="card-header card-head bg-dark text-light"><h3>{{ user.first_name }}'s Dashboard</h3></div>
+  <div class="card-body dash-card-body">
+      <p>BMR: {{ user_profile.bmr }}</p>
+      <p>Goal: {{ user_profile.goal }}</p>
+      <p>Current Weight: {{ user_profile.weight }} lb</p>
+      <p>Target Weight: {{ user_profile.target_weight }} lb</p>
+      <div class='button_wrapper'">
+        <button id="editProfile" type="button" class="btn btn-light btn-md">Edit Profile</button>
+      </div>
+  </div>
+</div>
+</div>
+
+<!-- Macro Progress Bars -->
+<div class="container dashy mb-5 text-light" style="text-align: center;">
+  <h4 style="position: relative"> Daily Macros Targets </h4>
+  <div class="row d-flex justify-content-center mt-2">
+    <div class="col-sm-3 col-md-2">
+      <h6>Carbs</h6>
+      <div class="progress mb-3 shadow mb-5 bg-dark"style= "height: 75px" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: {{ percent_carbs }}%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Carbs</div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <h6>Fats</h6>
+      <div class="progress mb-3 shadow mb-5 bg-dark"style= "height: 75px" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: {{ percent_fats }}%"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" ">Fats</div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <h6>Proteins</h6>
+      <div class="progress mb-3 shadow mb-5 bg-dark" style= "height: 75px" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: {{ percent_proteins }}" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Proteins</div>
+      </div>
+    </div>
+    <div class="col-sm-3 col-md-2">
+      <h6>Calories</h6>
+      <div class="progress mb-3 shadow mb-5 bg-dark" style= "height: 75px" >
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: {{ percent_calories }}%" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Calories</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Meals Section -->
 {% for meal in meals %}
-  <p>Meal: {{ meal.meal_name }}</p>
-  <p>Time: {{ meal.timestamp }}</p>
-  <p>Calories: {{ meal.total_calories }}</p>
-  <p>Carbs: {{ meal.total_carbs }}g</p>
-  <p>Fats: {{ meal.total_fats }}g</p>
-  <p>Proteins: {{ meal.total_proteins }}g</p>
-  Foods:
-  <ul>
-    {% for food in meal.foods.all %}
-    <li>{{ food.name }}</li>
-    {% endfor %}
-  </ul>
+<div class="container meal-container mb-5 p-5" style="text-align: center">
+  <h3>{{ meal.meal_name }}</h3>
+  <div class="row">
+  {% for food in meal.foods.all %}
+  <div class="col-sm-3">
+    <div class="card shadow-lg mb-5 bg-white" style="background: -webkit-linear-gradient(135deg, #ff0000 25%, #ff580d 100%)" style="max-width: 18rem; max-height: 8rem">
+      <div class="card-header bg-dark text-light"  >{{ food.name }}</div>
+      <img class="card-img-top" img src="{{ food.image }}" alt="pita" height="250px" border="0" alt="Card image cap">
+      <div class="card-body text-light">
+        <h5 class="card-title">Calories: {{ food.calories|floatformat:2 }}</h5>
+        <p data-id="{{food.carbs}}" class="food-data">Carbs: {{ food.carbs|floatformat:2 }}g</p>
+        <p data-id="{{food.fat}}" class="food-data">Fats: {{ food.fats|floatformat:2 }}g</p>
+        <p data-id="{{food.protein}}" class="food-data">Protein: {{ food.proteins|floatformat:2 }}g</p>
+        <p data-id="{{food.timestamp}}" class="food-data">Time: {{ food.timestamp }}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  </div>
+</div>
 <hr/>
 {% endfor %}
+
+<!-- Reset Button -->
+<div class='button_wrapper' id="resetButtonWrapper">
+  <button id="resetButton" type="button" class="btn btn-danger btn-lg">Reset</button>
+</div>
+{% endblock %}
+
+
