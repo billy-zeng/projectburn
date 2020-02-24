@@ -1,35 +1,35 @@
-
+{% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-
   {% if error %}
     <p style="background-color: firebrick;">{{error}}</p>
   {% endif %}
-  <html lang="en"><head>
+  <!-- <html lang="en"><head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
       <meta name="generator" content="Jekyll v3.8.6">
-      <title>Burn</title>
+      <title>Burn</title> -->
 
       <!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/cover/"> -->
 
       <!-- Bootstrap core CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="/docs/4.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Akronim&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Sriracha&display=swap" rel="stylesheet"> -->
       <!-- Favicons -->
-  <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <!-- <link rel="apple-touch-icon" href="/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
   <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-  <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"> -->
   <!-- <link rel="manifest" href="/docs/4.4/assets/img/favicons/manifest.json">
   <link rel="mask-icon" href="/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
   <link rel="icon" href="/docs/4.4/assets/img/favicons/favicon.ico"> -->
-  <style>
+  <!-- <style>
 
   h1 {
     font-family: 'Akronim', cursive;
@@ -93,61 +93,27 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   <nav class="navbar navbar-dark bg-dark mb-5 p-2 text-dark">
     <h1> BURN </h1>
 
-  </nav>
-  <div class ="container">
-      <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
+  </nav> -->
+  <div class="container">
+    <form action="{% url 'login' %}" method="POST">
+      {% csrf_token %}
       <form class="form-inline">
         <div class="form-group mb-2">
-            <label for="username">Username</label>
-            <input type="text" input type="text" name="username"  maxlength="25" minlength="2" required class="form-control" id="validationDefault03" placeholder="Username" required>
-          </div>
+          <label for="username">Username</label>
+          <input type="text" input type="text" name="username"  maxlength="25" minlength="2" required class="form-control" id="validationDefault03" placeholder="Username" required>
+        </div>
         <div class="form-group mt-2 mb-2">
           <label for="inputPassword2" >Password</label>
-          <input type="text" input type="password" name="password" maxlength="25" minlength="4" required class="form-control" id="inputPassword2" placeholder="Password">
+          <input type="password" input type="password" name="password" maxlength="25" minlength="4" required class="form-control" id="inputPassword2" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-lg btn-block btn-dark mt-4 mb-2">Confirm identity</button>
+        <button type="submit" class="btn btn-lg btn-block btn-dark mt-4 mb-2">Login</button>
       </form>
-      </form>
-    </div>
+    </form>
+  </div> 
 
-  <!-- <section class="form-section">
-    <form action="{% url 'signup' %}" method="POST" class="artist-form">
-      {% csrf_token %}
-      <p>
-        <label for="first_name">First Name</label>
-        <input type="text" name="first_name"  maxlength="25" minlength="2" required>
-      </p>
-      <p>
-        <label for="last_name">Last Name</label>
-        <input type="text" name="last_name"  maxlength="25" minlength="2" required>
-      </p>
-      <p>
-        <label for="email">Email</label>
-        <input type="email" name="email"  maxlength="25" minlength="2" required>
-      </p>
-      <p>
-        <label for="username">Username</label>
-        <input type="text" name="username"  maxlength="25" minlength="2" required>
-      </p>
-      <p>
-        <label for="password">Password</label>
-        <input type="password" name="password"  maxlength="25" minlength="4" required>
-      </p>
-      <p>
-        <label for="password2">Confirm Password</label>
-        <input type="password" name="password2"  maxlength="25" minlength="4" required>
-      </p>
-      <button type="submit"> Sign Up </button>
-    </form> -->
-  </section>
-
-  </html>
-
-
-  {% if error %}
+  <!-- {% if error %}
     <p style="background-color:firebrick;">{{error}}</p>
-  {% endif %}
+  {% endif %} -->
 
   <!-- <section class="form-section">
     <form action="{% url 'login' %}" method="POST">

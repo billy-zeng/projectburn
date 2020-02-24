@@ -8,5 +8,5 @@ urlpatterns = [
     path('search/', views.search, name='search'),  # search for food
     path('create_profile/', views.create_profile, name='create_profile'), # create profile
     path('edit_profile/', views.edit_profile, name='edit_profile'), # edit profile
-    path('search/add_food/', views.add_food, name='add_food')
+    path('clear_foods/', views.clear_foods, name='clear_foods')
 ]
