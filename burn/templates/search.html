@@ -35,12 +35,12 @@
         {{ add_food_form.as_p }}
 
         <!-- hidden inputs to track food data values -->
-        <input id="foodName" type="hidden" name="food_name" value="{{ food.food_name }}" />
-        <input id="foodCalories" type="hidden" name="food_calories" value="{{ food.calories }}" />
-        <input id="foodCarbs" type="hidden" name="food_carbs" value="{{ food.carbs }}" />
-        <input id="foodFat" type="hidden" name="food_fats" value="{{ food.fats }}" />
-        <input id="foodProtein" type="hidden" name="food_proteins" value="{{ food.proteins }}" />
-        <input id="foodImage" type="hidden" name="food_img" value="{{ food.img_url }}" />
+        <input type="hidden" name="food_name" value="{{ food.food_name }}" />
+        <input type="hidden" name="food_calories" value="{{ food.calories }}" />
+        <input type="hidden" name="food_carbs" value="{{ food.carbs }}" />
+        <input type="hidden" name="food_fats" value="{{ food.fats }}" />
+        <input type="hidden" name="food_proteins" value="{{ food.proteins }}" />
+        <input type="hidden" name="food_img" value="{{ food.img_url }}" />
         <button type="submit" class="logFood btn btn-outline-dark btn-transparent btn-block">Log This Food!</button>
       </form>
     </div>
