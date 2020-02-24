@@ -12,8 +12,7 @@ Unlike other nutrition apps, Burn tracks your nutritional intake via an external
 
 #### User stories:
 On page load, the user is greeted with a welcome page with a brief introductory message and buttons to sign up or login. The user clicks on the sign up button to register their account and is redirected to the login page. When the user logs in, they are redirected to a create profile page to enter their body metrics and fitness goals; If the user already has a profile, they are taken directly to the main dashboard. The app makes macro calculations based on the user input data.
-At the dashboard page they can view (via progress bars) how close they are to their daily goal. 
-The buttons on the page allow them to logout, add foods to their meals and snacks, and reset their dashboard on a new day!
+At the dashboard page they can view (via progress bars) how close they are to their daily goal. The dashboard page also includes a reset button to clear all foods at the start of a new day. The nav buttons on the page allow them to logout, add foods to their meals and snacks, or go back to the dashboard. To add a food, the user clicks on the 'add foods' button, taking them to a search form. The user searches for the food that they ate and a card pops up displaying the foods' macros. The user then enters when they ate that food and hits 'log this food' to add it to their profile. 
 
 
 #### Link to Heroku hosted project:
