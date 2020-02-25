@@ -18,7 +18,7 @@ On page load, the user is greeted with a welcome page with a brief introductory 
 At the dashboard page they can view (via progress bars) how close they are to their daily goal. The dashboard page also includes a reset button to clear all foods at the start of a new day. The nav buttons on the page allow them to logout, add foods to their meals and snacks, or go back to the dashboard. To add a food, the user clicks on the 'add foods' button, taking them to a search form. The user searches for the food that they ate and a card pops up displaying the foods' macros. The user then enters when they ate that food and hits 'log this food' to add it to their profile. 
 
 
-#### Link to Heroku hosted project:
+#### Link to Heroku hosted project: https://projectburn.herokuapp.com/
 
 
 #### Technologies (languages, external libraries, APIs):
